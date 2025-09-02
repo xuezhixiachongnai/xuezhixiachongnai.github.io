@@ -1,0 +1,23 @@
+.head {
+    height: 10px;
+}
+.img-head {
+    float: right;
+    width: 40%;
+    height: auto;
+}
+.img-footer {
+    width: 100%;
+    height: 70px;
+    position: relative;
+}
+.float-list { 
+  position: absolute;
+  list-style: none;
+  top: 215px;
+  color: black;
+}
+.float-list li {
+    display: inline-block;
+    margin-left: 200px;
+}
