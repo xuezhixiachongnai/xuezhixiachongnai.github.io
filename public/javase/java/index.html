@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Java | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.150.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/javase/java/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/javase/java/">
+  <meta property="og:title" content="Java">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="javase">
+    <meta property="article:published_time" content="2025-12-10T23:41:40+08:00">
+    <meta property="article:modified_time" content="2025-12-10T23:41:40+08:00">
+
+  <meta itemprop="name" content="Java">
+  <meta itemprop="datePublished" content="2025-12-10T23:41:40+08:00">
+  <meta itemprop="dateModified" content="2025-12-10T23:41:40+08:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Java">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Java
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+
+<style>
+     
+    header, .site-header, .page-header,
+    footer, .site-footer, .page-footer {
+        display: none !important;
+    }
+
+     
+    body {
+        overflow: hidden !important;
+        background: none !important;
+    }
+
+     
+    .post-bg {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/background-image/img2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 0;
+    }
+
+     
+    .post-bg::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.70);
+    }
+
+     
+    .post-scroll {
+        position: relative;
+        z-index: 2;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 60px 0 100px;
+    }
+
+    .post-container {
+        max-width: 860px;
+        margin: auto;
+    }
+
+     
+    .post-card {
+        background: #ffffff !important;      
+        color: #222 !important;              
+        padding: 40px 50px;
+        border-radius: 18px;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+        margin-bottom: 40px;
+        animation: fadeIn 0.35s ease;
+    }
+
+     
+    .post-title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #111 !important;
+        text-shadow: none !important;
+    }
+
+     
+    .post-date {
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 35px;
+    }
+
+     
+    .post-content {
+        font-size: 18px;
+        line-height: 1.75;
+        color: #333 !important;
+    }
+
+    .post-content p,
+    .post-content li {
+        color: #333 !important;
+    }
+
+     
+    .post-content img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+
+     
+    .post-content strong,
+    .post-content b {
+        font-weight: 700 !important;
+        color: #111 !important;
+    }
+
+     
+    .post-content strong code,
+    .post-content b code {
+        background: none !important;
+        padding: 0 !important;
+        color: inherit !important;
+    }
+
+     
+    pre, code {
+        background: #1e1f26 !important;
+        color: #e5e9f0 !important;
+        border: none !important;
+        padding: 14px 18px !important;
+        border-radius: 10px !important;
+        overflow-x: auto !important;
+    }
+
+     
+    code .k, code .kd, code .kn, code .kr {
+        color: #FFB755 !important;
+    }
+
+     
+    code .nc, code .kt, code .nn {
+        color: #66F7FF !important;
+    }
+
+     
+    code .nf {
+        color: #FFE98A !important;
+    }
+
+     
+    code .s, code .sb, code .sc {
+        color: #9CFFB4 !important;
+    }
+
+     
+    code .m {
+        color: #8CC2FF !important;
+    }
+
+     
+    code .n {
+        color: #E8E8F8 !important;
+    }
+
+     
+    code .nb {
+        color: #FFAA66 !important;
+    }
+
+     
+    code .kc, code .kp {
+        color: #FF86E1 !important;
+    }
+
+     
+    code .c, code .cm, code .c1 {
+        color: #999999 !important;
+        font-style: italic;
+    }
+
+     
+    code .o {
+        color: #FFFFFF !important;
+    }
+
+     
+    pre::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+        background: rgba(180,180,180,0.35);
+        border-radius: 6px;
+    }
+
+     
+    .post-content code:not([class]) {
+        background: rgba(0,0,0,0.06) !important;
+        padding: 2px 6px !important;
+        border-radius: 6px !important;
+        color: #0066cc !important;
+    }
+
+     
+    blockquote {
+        border-left: 4px solid #ddd;
+        background: #f7f7f7;
+        color: #555;
+        padding: 12px 18px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="post-bg"></div>
+
+<div class="post-scroll">
+    <div class="post-container">
+        <div class="post-card">
+
+            <div class="post-title">Java</div>
+
+            <div class="post-date">
+                December 10, 2025
+            </div>
+
+            <div class="post-content">
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy; 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

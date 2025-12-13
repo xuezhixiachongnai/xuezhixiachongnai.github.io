@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Java集合的演变 | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="JDK 7 之前
+接口只能包含：
+
+public abstract 方法
+public static fianl 常量
+
+不能有方法实现和实例字段
+interface A {
+    int NUM = 10;
+    void f(); // abstract
+}
+接口的主要作用是抽象行为、实现多继承。
+
+接口中的字段只能是 public static final，我们在接口中写任何接口字段，Java 编译器会自动将修饰符补全。
+接口字段是：
+
+共有的，所有实现类都可以使用
+静态的，属于接口不属于任何实现类
+被 final 修饰，防止被修改
+
+只有这样才能满足接口的作用：定义行为契约。
+JDK 8
+到 JDK 8 时，Java 引入了：
+
+
+默认方法，方法可以带有实现类。
+default void print() {
+    System.out.println(&#34;hello&#34;);
+}
+
+
+静态方法，可以充当静态工具类
+static void say() {
+    System.out.println(&#34;Hi&#34;);
+}
+
+
+Java 8 中的 default 方法是一个兼容性设计。一般来说，实现接口的类需要将接口中声明的方法全部重写，如果这时给接口中添加了新方法的话，下面的所有旧实现类需要该方法重写。这在大系统中是灾难。但是新增 default 之后，在接口中新定义一个 default 方法，旧类不需要修改也能继续使用。">
+    <meta name="generator" content="Hugo 0.150.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+  
+    <link rel="stylesheet" href="/css/chroma-silent.css">
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/javase/java%E9%9B%86%E5%90%88%E7%9A%84%E6%BC%94%E5%8F%98/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/javase/java%E9%9B%86%E5%90%88%E7%9A%84%E6%BC%94%E5%8F%98/">
+  <meta property="og:title" content="Java集合的演变">
+  <meta property="og:description" content="JDK 7 之前 接口只能包含：
+public abstract 方法 public static fianl 常量 不能有方法实现和实例字段
+interface A { int NUM = 10; void f(); // abstract } 接口的主要作用是抽象行为、实现多继承。
+接口中的字段只能是 public static final，我们在接口中写任何接口字段，Java 编译器会自动将修饰符补全。
+接口字段是：
+共有的，所有实现类都可以使用 静态的，属于接口不属于任何实现类 被 final 修饰，防止被修改 只有这样才能满足接口的作用：定义行为契约。
+JDK 8 到 JDK 8 时，Java 引入了：
+默认方法，方法可以带有实现类。
+default void print() { System.out.println(&#34;hello&#34;); } 静态方法，可以充当静态工具类
+static void say() { System.out.println(&#34;Hi&#34;); } Java 8 中的 default 方法是一个兼容性设计。一般来说，实现接口的类需要将接口中声明的方法全部重写，如果这时给接口中添加了新方法的话，下面的所有旧实现类需要该方法重写。这在大系统中是灾难。但是新增 default 之后，在接口中新定义一个 default 方法，旧类不需要修改也能继续使用。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="javase">
+    <meta property="article:published_time" content="2025-12-11T22:43:36+08:00">
+    <meta property="article:modified_time" content="2025-12-11T22:43:36+08:00">
+
+  <meta itemprop="name" content="Java集合的演变">
+  <meta itemprop="description" content="JDK 7 之前 接口只能包含：
+public abstract 方法 public static fianl 常量 不能有方法实现和实例字段
+interface A { int NUM = 10; void f(); // abstract } 接口的主要作用是抽象行为、实现多继承。
+接口中的字段只能是 public static final，我们在接口中写任何接口字段，Java 编译器会自动将修饰符补全。
+接口字段是：
+共有的，所有实现类都可以使用 静态的，属于接口不属于任何实现类 被 final 修饰，防止被修改 只有这样才能满足接口的作用：定义行为契约。
+JDK 8 到 JDK 8 时，Java 引入了：
+默认方法，方法可以带有实现类。
+default void print() { System.out.println(&#34;hello&#34;); } 静态方法，可以充当静态工具类
+static void say() { System.out.println(&#34;Hi&#34;); } Java 8 中的 default 方法是一个兼容性设计。一般来说，实现接口的类需要将接口中声明的方法全部重写，如果这时给接口中添加了新方法的话，下面的所有旧实现类需要该方法重写。这在大系统中是灾难。但是新增 default 之后，在接口中新定义一个 default 方法，旧类不需要修改也能继续使用。">
+  <meta itemprop="datePublished" content="2025-12-11T22:43:36+08:00">
+  <meta itemprop="dateModified" content="2025-12-11T22:43:36+08:00">
+  <meta itemprop="wordCount" content="280">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Java集合的演变">
+  <meta name="twitter:description" content="JDK 7 之前 接口只能包含：
+public abstract 方法 public static fianl 常量 不能有方法实现和实例字段
+interface A { int NUM = 10; void f(); // abstract } 接口的主要作用是抽象行为、实现多继承。
+接口中的字段只能是 public static final，我们在接口中写任何接口字段，Java 编译器会自动将修饰符补全。
+接口字段是：
+共有的，所有实现类都可以使用 静态的，属于接口不属于任何实现类 被 final 修饰，防止被修改 只有这样才能满足接口的作用：定义行为契约。
+JDK 8 到 JDK 8 时，Java 引入了：
+默认方法，方法可以带有实现类。
+default void print() { System.out.println(&#34;hello&#34;); } 静态方法，可以充当静态工具类
+static void say() { System.out.println(&#34;Hi&#34;); } Java 8 中的 default 方法是一个兼容性设计。一般来说，实现接口的类需要将接口中声明的方法全部重写，如果这时给接口中添加了新方法的话，下面的所有旧实现类需要该方法重写。这在大系统中是灾难。但是新增 default 之后，在接口中新定义一个 default 方法，旧类不需要修改也能继续使用。">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Java集合的演变
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+
+<style>
+ 
+header,
+footer,
+.site-header,
+.site-footer,
+.page-header,
+.hero {
+  display: none !important;
+}
+
+ 
+body {
+  margin: 0;
+  font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+   
+}
+
+ 
+.post-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+.post-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(40,50,65,0.35);
+}
+
+ 
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 96px 20px 140px;
+}
+
+ 
+.post-card {
+  width: 100%;
+  max-width: 860px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(245,248,252,.98),
+    rgba(238,242,248,.98)
+  );
+
+  padding: 56px 64px;
+  border-radius: 26px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(210,220,235,.55),
+    0 16px 40px rgba(0,0,0,.18);
+}
+
+ 
+.post-title {
+   
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  color: #2a3441;
+  margin-bottom: 14px;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #7a8796;
+  margin-bottom: 40px;
+}
+
+ 
+.post-content {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  line-height: 1.9;
+   
+  color: #2a3441;
+}
+
+.post-content strong {
+  font-weight: 500;
+}
+
+ 
+.post-content code:not(pre code) {
+  background: rgba(220,228,236,.9);
+  color: #2b5fad;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: .9em;
+}
+
+ 
+.post-content blockquote {
+  margin: 32px 0;
+  padding: 20px 24px;
+
+  background: rgba(232,238,245,.65);
+  border-radius: 12px;
+
+   
+  border-left: 4px solid rgba(120,150,190,.55);
+
+  color: #3a4656;
+}
+
+ 
+.post-content blockquote::before {
+  content: none !important;
+}
+
+ 
+.snow {
+  position: fixed;
+  top: -10px;
+  width: 2px;
+  height: 2px;
+  background: rgba(255,255,255,.7);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: snow-fall linear infinite;
+}
+
+@keyframes snow-fall {
+  to { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+
+
+<div class="post-bg" id="postBg"></div>
+
+
+<main class="main">
+  <article class="post-card">
+
+    
+    <h1 class="post-title">Java集合的演变</h1>
+
+    
+      <div class="post-date">December 11, 2025</div>
+    
+
+    <div class="post-content">
+      <h2 id="jdk-7-之前">JDK 7 之前</h2>
+<p>接口只能包含：</p>
+<ul>
+<li><code>public abstract</code> 方法</li>
+<li><code>public static fianl</code> 常量</li>
+</ul>
+<p>不能有<strong>方法实现</strong>和<strong>实例字段</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">A</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">();</span><span class="w"> </span><span class="c1">// abstract</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>接口的主要作用是<strong>抽象行为</strong>、<strong>实现多继承</strong>。</p>
+<blockquote>
+<p><strong>接口中的字段只能是 <code>public static final</code>，我们在接口中写任何接口字段，Java 编译器会自动将修饰符补全。</strong></p>
+<p>接口字段是：</p>
+<ul>
+<li>共有的，所有实现类都可以使用</li>
+<li>静态的，属于接口不属于任何实现类</li>
+<li>被 <strong>final</strong> 修饰，防止被修改</li>
+</ul>
+<p>只有这样才能满足接口的作用：<strong>定义行为契约</strong>。</p></blockquote>
+<h2 id="jdk-8">JDK 8</h2>
+<p>到 JDK 8 时，Java 引入了：</p>
+<ul>
+<li>
+<p>默认方法，方法可以带有实现类。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">default</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>静态方法，可以充当静态工具类</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">say</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hi&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ul>
+<p><strong>Java 8 中的 default 方法是一个兼容性设计。一般来说，实现接口的类需要将接口中声明的方法全部重写，如果这时给接口中添加了新方法的话，下面的所有旧实现类需要该方法重写。这在大系统中是灾难。但是新增 default 之后，在接口中新定义一个 default 方法，旧类不需要修改也能继续使用。</strong></p>
+<h2 id="jdk-9">JDK 9</h2>
+<p>这时 Java 引入了，<strong>私有方法</strong>，接口可以写私有方法，用于 default 方法之间复用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">helper</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;help&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>我们可以看到，开篇接口中的方法并没有写修饰符，这是因为没有任何修饰符的接口方法，编译器会自动加上 <code>public abstract</code>。如果我们要使用默认方法、私有方法和静态方法等等，都需要手动加上相应的关键字 <code>default</code>、<code>private</code> 和 <code>static</code>。</p>
+<p>接口的主要作用是表示行为契约，因此：</p>
+<ul>
+<li><code>public</code>：表示所有实现类都可以看到</li>
+<li><code>abstract</code>：要求实现类必须实现</li>
+</ul></blockquote>
+<h2 id="jdk-16">JDK 16+</h2>
+<p>接口可以被<strong>密封</strong>，这样就可以限制无关类实现该接口，增强类型系统的安全性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Shape</span><span class="w"> </span><span class="n">permits</span><span class="w"> </span><span class="n">Circle</span><span class="p">,</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span></span></span></code></pre></div><p><strong>可以发现，这和类内部接口的作用很像，都是限制接口的实现者，规定作用范围。最大的区别就是 sealed 接口时编译器强制规范的，内部类是编写程序时的一种语义。</strong></p>
+<p>典型的像 <strong>Map.Entry</strong>，它就是 JDK 单独为 Map 类型设计的接口。</p>
+<p>我们可以单独设计一个类，内部定义一个策略接口</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Sorter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">interface</span> <span class="nc">Strategy</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Strategy</span><span class="w"> </span><span class="n">strategy</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setStrategy</span><span class="p">(</span><span class="n">Strategy</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>通过外部为这个类提供不同的策略，实现不同的功能</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Sorter</span><span class="w"> </span><span class="n">sorter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Sorter</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sorter</span><span class="p">.</span><span class="na">setStrategy</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Sorter</span><span class="p">.</span><span class="na">Strategy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">});</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>这里我们的接口并没有用修饰符，那么编译器认为它的作用域是什么呢？</p>
+<p><strong>内部接口不写修饰符默认是 <code>package-private</code>（包级可见）</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Outer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="kd">interface</span> <span class="nc">Inner</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Outer</span><span class="p">.</span><span class="na">Inner</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 只要在同包就能实现</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></blockquote>
+<blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">other</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Outer</span><span class="p">.</span><span class="na">Inner</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="c1">// 无法访问 Inner</span><span class="w">
+</span></span></span></code></pre></div><p>这就一般的类修饰符规则一样。</p>
+<ul>
+<li>顶层类和接口的修饰符只有两种，<code>public</code>、<code>package-private</code>。</li>
+<li>而类中字段属性的修饰规则是
+<ul>
+<li><code>public</code> 对所有代码可见</li>
+<li><code>protected</code> 子类、同包可见</li>
+<li><code>(default) package-private</code> 同包可见</li>
+<li><code>private</code> 只有当前类可见</li>
+</ul>
+</li>
+<li><code>static</code> 被它修饰的话表示当前属性属于类，不属于实例</li>
+</ul></blockquote>
+<h2 id="接口和抽象类有什么关系">接口和抽象类有什么关系</h2>
+<p>在讨论二者的关系时，我们先了解一下什么是抽象类：</p>
+<p><strong>抽象类是一种不能被创建对象的类，其中可以包含抽象方法（没有方法体的方法），用于强制子类实现某些行为。</strong></p>
+<p><strong>抽象类常作为基类，内部定义子类必须重写的抽象方法，实现代码的复用。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Animal</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Animal</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sound</span><span class="p">();</span><span class="w">  </span><span class="c1">// 抽象方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sleep</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// 普通方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;zzz...&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">Dog</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">name</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">sound</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; barks&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Test</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Animal</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&#34;Buddy&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">sound</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="na">sleep</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><strong>抽象类允许包含变量、构造方法、普通方法等，但是它不能被 final 修饰，因为抽象类就是用来被继承的。它和接口相比起来的话，接口实际上是一种对类行为的规范，让不同的类实现同一套方法。</strong></p>
+
+    </div>
+
+  </article>
+</main>
+
+<script>
+ 
+(function () {
+  const imgs = [
+    "/images/background-image/img1.jpg",
+    "/images/background-image/img2.jpg",
+    "/images/background-image/img3.jpg"
+  ];
+  document.getElementById("postBg").style.backgroundImage =
+    `url('${imgs[Math.floor(Math.random()*imgs.length)]}')`;
+})();
+
+ 
+for (let i = 0; i < 22; i++) {
+  const s = document.createElement("div");
+  s.className = "snow";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = 14 + Math.random() * 12 + "s";
+  s.style.opacity = 0.4 + Math.random() * 0.5;
+  document.body.appendChild(s);
+}
+</script>
+
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy; 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

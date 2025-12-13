@@ -1,0 +1,206 @@
+{{ define "main" }}
+
+<style>
+/* ======================
+   基础
+   ====================== */
+header, footer {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+    background: none;
+}
+
+/* ======================
+   背景容器（不写死图片）
+   ====================== */
+.bg {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* 冷灰蓝遮罩（不是纯黑） */
+.bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(40,50,65,.45);
+}
+
+/* ======================
+   内容区
+   ====================== */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 100px;
+}
+
+/* ======================
+   ❄️ 卡片：静谧淡雅（不发光）
+   ====================== */
+.post-card {
+    width: 62%;
+    margin: 0 auto 24px;
+}
+
+.post-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(245,248,252,.98),
+        rgba(238,242,248,.98)
+    );
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(210,220,235,.6),
+        0 8px 18px rgba(0,0,0,.18);
+
+    text-decoration: none;
+    color: #1f2d3d;
+}
+
+/* 图片 */
+.post-avatar {
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    background: rgba(230,235,242,.9);
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(200,210,225,.6);
+    flex-shrink: 0;
+}
+
+.post-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* 标题 */
+.post-title {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: .4px;
+}
+
+/* 移动端 */
+@media (max-width: 700px) {
+    .post-card {
+        width: 92%;
+    }
+}
+
+/* ======================
+   ❄️ 下雪
+   ====================== */
+.snow {
+    position: fixed;
+    top: -10px;
+    width: 2px;
+    height: 2px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    box-shadow:
+        0 0 2px rgba(180,200,220,0.55),
+        0 0 6px rgba(180,200,220,0.35);
+    pointer-events: none;
+    animation: snow-fall linear infinite;
+    z-index: 1;
+}
+
+@keyframes snow-fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+</style>
+
+<!-- 背景容器 -->
+<div class="bg" id="pageBg"></div>
+
+<div class="content">
+    {{ range .Pages }}
+    <div class="post-card">
+        <a class="post-link" href="{{ .RelPermalink }}">
+            <div class="post-avatar">
+                <img src="">
+            </div>
+            <div class="post-title">{{ .Title }}</div>
+        </a>
+    </div>
+    {{ end }}
+</div>
+
+<script>
+/* ======================
+   背景图片：恢复为原始随机逻辑
+   ====================== */
+(function () {
+    const images = [
+        "/images/background-image/img1.jpg",
+        "/images/background-image/img2.jpg"
+        // 以后可以继续加
+    ];
+
+    const bg = document.getElementById("pageBg");
+    bg.style.backgroundImage =
+        `url('${images[Math.floor(Math.random() * images.length)]}')`;
+})();
+
+/* ======================
+   卡片图片：硬编码，不重复
+   ====================== */
+(function () {
+    const images = [
+        "/images/post-cover/snow1.jpg",
+        "/images/post-cover/snow2.jpg",
+        "/images/post-cover/snow3.jpg",
+        "/images/post-cover/snow4.jpg",
+        "/images/post-cover/snow5.jpg"
+    ];
+
+    const imgs = document.querySelectorAll(".post-avatar img");
+    imgs.forEach((img, index) => {
+        if (index < images.length) {
+            img.src = images[index];
+        } else {
+            img.style.display = "none";
+        }
+    });
+})();
+
+/* ======================
+   ❄️ 下雪生成
+   ====================== */
+for (let i = 0; i < 30; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 10 + Math.random() * 8 + "s";
+    snow.style.opacity = Math.random();
+    snow.style.transform = `scale(${Math.random()})`;
+    document.body.appendChild(snow);
+}
+</script>
+
+{{ end }}

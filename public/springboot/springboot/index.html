@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Springboot | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="我永远喜欢雪之下雪乃！">
+    <meta name="generator" content="Hugo 0.150.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+  
+    <link rel="stylesheet" href="/css/chroma-silent.css">
+  
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/springboot/springboot/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/springboot/springboot/">
+  <meta property="og:title" content="Springboot">
+  <meta property="og:description" content="我永远喜欢雪之下雪乃！">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="springboot">
+    <meta property="article:published_time" content="2025-12-10T23:42:05+08:00">
+    <meta property="article:modified_time" content="2025-12-10T23:42:05+08:00">
+
+  <meta itemprop="name" content="Springboot">
+  <meta itemprop="description" content="我永远喜欢雪之下雪乃！">
+  <meta itemprop="datePublished" content="2025-12-10T23:42:05+08:00">
+  <meta itemprop="dateModified" content="2025-12-10T23:42:05+08:00">
+  <meta itemprop="wordCount" content="1">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Springboot">
+  <meta name="twitter:description" content="我永远喜欢雪之下雪乃！">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Springboot
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+
+<style>
+ 
+header,
+footer,
+.site-header,
+.site-footer,
+.page-header,
+.hero {
+  display: none !important;
+}
+
+ 
+body {
+  margin: 0;
+  font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+   
+}
+
+ 
+.post-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+.post-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(40,50,65,0.35);
+}
+
+ 
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 96px 20px 140px;
+}
+
+ 
+.post-card {
+  width: 100%;
+  max-width: 860px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(245,248,252,.98),
+    rgba(238,242,248,.98)
+  );
+
+  padding: 56px 64px;
+  border-radius: 26px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(210,220,235,.55),
+    0 16px 40px rgba(0,0,0,.18);
+}
+
+ 
+.post-title {
+   
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  color: #2a3441;
+  margin-bottom: 14px;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #7a8796;
+  margin-bottom: 40px;
+}
+
+ 
+.post-content {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  line-height: 1.9;
+   
+  color: #2a3441;
+}
+
+.post-content strong {
+  font-weight: 500;
+}
+
+ 
+.post-content code:not(pre code) {
+  background: rgba(220,228,236,.9);
+  color: #2b5fad;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: .9em;
+}
+
+ 
+.post-content blockquote {
+  margin: 32px 0;
+  padding: 20px 24px;
+
+  background: rgba(232,238,245,.65);
+  border-radius: 12px;
+
+   
+  border-left: 4px solid rgba(120,150,190,.55);
+
+  color: #3a4656;
+}
+
+ 
+.post-content blockquote::before {
+  content: none !important;
+}
+
+ 
+.snow {
+  position: fixed;
+  top: -10px;
+  width: 2px;
+  height: 2px;
+  background: rgba(255,255,255,.7);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: snow-fall linear infinite;
+}
+
+@keyframes snow-fall {
+  to { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+
+
+<div class="post-bg" id="postBg"></div>
+
+
+<main class="main">
+  <article class="post-card">
+
+    
+    <h1 class="post-title">Springboot</h1>
+
+    
+      <div class="post-date">December 10, 2025</div>
+    
+
+    <div class="post-content">
+      <p>我永远喜欢雪之下雪乃！</p>
+
+    </div>
+
+  </article>
+</main>
+
+<script>
+ 
+(function () {
+  const imgs = [
+    "/images/background-image/img1.jpg",
+    "/images/background-image/img2.jpg",
+    "/images/background-image/img3.jpg"
+  ];
+  document.getElementById("postBg").style.backgroundImage =
+    `url('${imgs[Math.floor(Math.random()*imgs.length)]}')`;
+})();
+
+ 
+for (let i = 0; i < 22; i++) {
+  const s = document.createElement("div");
+  s.className = "snow";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = 14 + Math.random() * 12 + "s";
+  s.style.opacity = 0.4 + Math.random() * 0.5;
+  document.body.appendChild(s);
+}
+</script>
+
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy; 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
