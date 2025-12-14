@@ -19,6 +19,213 @@ footer,
 body {
   margin: 0;
   font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+/* ===============================
+   3. 固定背景（纯视觉）
+   =============================== */
+.post-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+.post-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(40,50,65,0.35);
+}
+
+/* ===============================
+   4. 页面主体（稳定居中）
+   =============================== */
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 96px 20px 140px;
+}
+
+/* ===============================
+   5. 阅读卡
+   =============================== */
+.post-card {
+  width: 100%;
+  max-width: 860px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(245,248,252,.98),
+    rgba(238,242,248,.98)
+  );
+
+  padding: 56px 64px;
+  border-radius: 26px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(210,220,235,.55),
+    0 16px 40px rgba(0,0,0,.18);
+}
+
+/* ===============================
+   6. 文章标题
+   =============================== */
+.post-title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  color: #2a3441;
+  margin-bottom: 14px;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #7a8796;
+  margin-bottom: 40px;
+}
+
+/* ===============================
+   7. 正文文字
+   =============================== */
+.post-content {
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: .4px;
+  line-height: 1.9;
+  color: #2a3441;
+}
+
+.post-content strong {
+  font-weight: 500;
+}
+
+/* 行内代码 */
+.post-content code:not(pre code) {
+  background: rgba(220,228,236,.9);
+  color: #2b5fad;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: .9em;
+}
+
+/* ===============================
+   8. blockquote：左侧竖线风格
+   =============================== */
+.post-content blockquote {
+  margin: 32px 0;
+  padding: 20px 24px;
+
+  background: rgba(232,238,245,.65);
+  border-radius: 12px;
+
+  border-left: 4px solid rgba(120,150,190,.55);
+  color: #3a4656;
+}
+
+.post-content blockquote::before {
+  content: none !important;
+}
+
+/* ===============================
+   9. 雪花（装饰）
+   =============================== */
+.snow {
+  position: fixed;
+  top: -10px;
+  width: 2px;
+  height: 2px;
+  background: rgba(255,255,255,.7);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: snow-fall linear infinite;
+}
+
+@keyframes snow-fall {
+  to { transform: translateY(110vh); opacity: 0; }
+}
+
+/* =========================================================
+   10. 移动端适配（仅补充，不影响桌面端）
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* 页面整体 */
+  .main {
+    padding: 72px 12px 96px;
+  }
+
+  /* 阅读卡 */
+  .post-card {
+    padding: 32px 22px;
+    border-radius: 20px;
+  }
+
+  /* 标题与信息 */
+  .post-title {
+    font-size: 24px;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .post-date {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  /* 正文 */
+  .post-content {
+    font-size: 16px;
+    line-height: 1.85;
+    letter-spacing: .2px;
+  }
+
+  /* ===============================
+     移动端代码块完整显示（核心）
+     =============================== */
+  .post-content pre {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  .post-content pre code {
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;
+    display: inline-block;
+    min-width: max-content;
+  }
+
+  /* 可滑动提示（极弱，不破坏视觉） */
+  .post-content pre {
+    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,.18);
+  }
+}
+</style>
+
+
+<!-- <style>
+/* ===============================
+   1. 隐藏 ananke 原生结构
+   =============================== */
+header,
+footer,
+.site-header,
+.site-footer,
+.page-header,
+.hero {
+  display: none !important;
+}
+
+/* ===============================
+   2. 字体系统（分类页风格）
+   =============================== */
+body {
+  margin: 0;
+  font-family: "PingFang SC","Microsoft YaHei",sans-serif;
   /* font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -160,7 +367,7 @@ body {
 @keyframes snow-fall {
   to { transform: translateY(110vh); opacity: 0; }
 }
-</style>
+</style> -->
 
 <!-- 背景 -->
 <div class="post-bg" id="postBg"></div>
