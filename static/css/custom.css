@@ -1,23 +1,21 @@
-/* ===== 强制修复移动端代码块 ===== */
+/* ===============================
+   10. 移动端代码块横向滚动（仅补充，不覆盖原样式）
+   =============================== */
 @media (max-width: 768px) {
 
-  pre,
-  .post-content pre,
-  .content pre,
-  article pre {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
+  .post-content pre {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
-  pre code,
-  .post-content pre code,
-  .content pre code,
-  article pre code {
-    white-space: pre !important;
-    word-break: normal !important;
-    word-wrap: normal !important;
-    display: inline-block !important;
-    min-width: max-content !important;
+  .post-content pre code {
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;
+    display: inline-block;
+    min-width: max-content;
   }
+
 }
+
