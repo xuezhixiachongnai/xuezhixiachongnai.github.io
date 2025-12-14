@@ -6,10 +6,6 @@ theme = "ananke"
 
 [params]
   highlightjs = false
-  custom_css = [
-    "css/chroma-silent.css",  # 基础代码高亮
-    "css/custom.css"          # 你的覆盖规则
-  ]
 
 [markup]
   [markup.highlight]

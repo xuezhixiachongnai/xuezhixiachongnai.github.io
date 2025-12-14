@@ -202,7 +202,12 @@ html, body {
 
 <script>
 /* Hero 背景切换 */
-const images = ["/images/cover1.jpg","/images/cover2.jpg"];
+const images = [
+    "/images/cover1.jpg",
+    "/images/cover2.jpg",
+    "/images/cover3.jpg",
+    "/images/cover4.jpg"
+];
 let current = 0;
 document.getElementById("hero").onclick = () => {
     current = (current + 1) % images.length;
