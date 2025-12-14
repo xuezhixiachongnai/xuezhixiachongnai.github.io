@@ -1,0 +1,12 @@
+/* ===== 移动端代码块完整显示 ===== */
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* iOS 顺滑滚动 */
+}
+
+pre code {
+  white-space: pre;       /* 保持代码不自动换行 */
+  word-break: normal;
+  display: block;
+  min-width: max-content; /* 防止被压缩 */
+}
