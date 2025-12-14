@@ -6,9 +6,9 @@ theme = "ananke"
 
 [params]
   highlightjs = false
-custom_css = [
-  "css/chroma-silent.css"
-]
+  custom_css = [
+    "css/chroma-silent.css"
+  ]
 [markup]
   [markup.highlight]
     noClasses = false
