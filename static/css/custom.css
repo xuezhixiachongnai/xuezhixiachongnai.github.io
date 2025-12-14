@@ -1,7 +1,7 @@
 /* ===============================
    10. 移动端代码块横向滚动（仅补充，不覆盖原样式）
    =============================== */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
   .post-content pre {
     overflow-x: auto;
@@ -17,5 +17,5 @@
     min-width: max-content;
   }
 
-}
+} */
 
