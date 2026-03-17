@@ -151,7 +151,7 @@ PUT /product_en
 
 现使用多字段方案存储数据，展示一下该方案在 Java 层的职责拆分
 
-```tex
+```markdown
 HTTP 请求
 ↓
 SearchController
@@ -403,7 +403,7 @@ POST product_us_alias/_doc/1
 
 通常可以在一个数据库中存放按地区划分的表
 
-```tex
+```markdown
 db_product
  ├── product_listing_us
  ├── product_listing_jp
@@ -418,7 +418,7 @@ String table = "product_listing_" + region;
 
 也可以选择分库分表
 
-```tex
+```markdown
 db_product_us
  └── product_listing
 
@@ -435,7 +435,7 @@ db_product_sg
 
 索引按地区拆分，然后由业务层路由
 
-```tex
+```markdown
 product_us
 product_jp
 product_sg
@@ -549,7 +549,7 @@ public SearchRequest buildRequest(String indexAlias, String keyword) {
 
 整体架构
 
-```tex
+```markdown
 ┌─────────────┐
 │  用户请求   │
 └─────┬───────┘

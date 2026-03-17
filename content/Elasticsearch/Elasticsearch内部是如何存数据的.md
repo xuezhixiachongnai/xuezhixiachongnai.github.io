@@ -10,7 +10,7 @@ title = 'Elasticsearch内部是如何存数据的'
 
 从上到下是这样的层级：
 
-```tex
+```markdown
 Index（索引）
  └── Shard（分片）
       └── Lucene Index
@@ -60,7 +60,7 @@ Index（索引）
 
 用于全文检索（text 字段）
 
-```tex
+```markdown
 term → [docID1, docID2, docID3]
 ```
 
